@@ -18,7 +18,7 @@ glm::mat4 MT2 = T2*S2*glm::inverse(T2);
 // Mirror the starship along a plane passing through (1,1,1), and obtained rotating 15 degree around the x axis the xz plane
 glm::mat4 T3 = glm::translate(glm::mat4(1), glm::vec3(1, 1, 1));
 glm::mat4 RX3 = glm::rotate(glm::mat4(1), glm::radians(15.0f), glm::vec3(1, 0, 0));
-//Scaling - mirroring with s=(1,-1,1)
+//Scaling - mirroring with s=(1,-1,1) (negative value on the plane missing component, in this case y)
 glm::mat4 S3 = glm::scale(glm::mat4(1), glm::vec3(1, -1, 1));
 glm::mat4 MT3 = T3 * RX3 * S3 * glm::inverse(RX3) * glm::inverse(T3);
 
