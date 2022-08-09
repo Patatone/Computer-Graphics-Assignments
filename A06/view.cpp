@@ -4,6 +4,7 @@
  // Angs.y -> elevation (beta)
  // Angs.z -> roll (rho)
 glm::mat4 LookInDirMat(glm::vec3 Pos, glm::vec3 Angs) {
+	//Angs are values in radiants, I tried to convert them in radiants and strange things happened 
 	//Negative values because we are computing View Matrix, it's the inverse of the Camera Matrix.
 	glm::mat4 RZ = glm::rotate(glm::mat4(1.0), -Angs.z, glm::vec3(0, 0, 1));
 	//Inverted Angs.x and Angs.y rotation to fix the camera view
