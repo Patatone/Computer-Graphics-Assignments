@@ -42,6 +42,7 @@ glm::mat4 PO4(float a) {
 	float r = 0.0;
 
 	//frustum() allows to compute the prospective projection matrix specifying the boundaries
+	//First term of the product (scale()) flips the y-axis to match the Vulkan conventions.
 	glm::mat4 Mlglm = glm::scale(glm::mat4(1.0), glm::vec3(1, -1, 1)) * glm::frustum(l, r, b, t, n, f);
 	return Mlglm;
 }
