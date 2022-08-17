@@ -42,7 +42,7 @@ private:
 
         // Get extension details
         vkEnumerateInstanceExtensionProperties(nullptr, &extensionCount, extensions.data());
-        std::cout << "available extensions:\n";
+        std::cout << "Available extensions:\n";
 
         // Print extensions
         for (const auto& extension : extensions) {
@@ -52,7 +52,6 @@ private:
 
     /* Print extensions and create Vulkan instance */
     void createInstance() {
-
         // Function for printing extensions
         printExtensions();
 
@@ -86,29 +85,34 @@ private:
         VkResult result = vkCreateInstance(&createInfo, nullptr, &instance);
 
         // Check if instance creation was successful
-        if (vkCreateInstance(&createInfo, nullptr, &instance) != VK_SUCCESS) {
+        if (result != VK_SUCCESS) {
             throw std::runtime_error("failed to create instance!");
         }
     }
 
     /* Initialize GLFW and create a window */
     void initWindow() {
-        glfwInit(); // init GLFW library
+        // init GLFW library
+        glfwInit(); 
 
-        glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API); // do not create an OpenGL context
-        glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE); // disable window resizing
+        // do not create an OpenGL context
+        glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API); 
+        // disable window resizing
+        glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE); 
 
-        window = glfwCreateWindow(WIDTH, HEIGHT, "Assignment 12", nullptr, nullptr); // create window
+        // create window
+        window = glfwCreateWindow(WIDTH, HEIGHT, "Assignment 12", nullptr, nullptr); 
     }
 
     /* Init the vulkan objects */
     void initVulkan() {
-        createInstance(); // connection between application and Vulkan library
+        // connection between application and Vulkan library
+        createInstance(); 
     }
 
     /* Run until window is closed*/
     void mainLoop() {
-        // Until error or window closed
+        // Wait for the window to close
         while (!glfwWindowShouldClose(window)) {
             glfwPollEvents();
         }
@@ -116,12 +120,12 @@ private:
 
     /* Deallocate resources*/
     void cleanup() {
-
-        vkDestroyInstance(instance, nullptr); // destroy instance
-
-        glfwDestroyWindow(window); // destroy window
-
-        glfwTerminate(); // terminate GLFW
+        // destroy instance
+        vkDestroyInstance(instance, nullptr); 
+        // destroy window
+        glfwDestroyWindow(window); 
+        // terminate GLFW
+        glfwTerminate(); 
     }
 };
 
