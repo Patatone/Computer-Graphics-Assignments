@@ -49,6 +49,7 @@ private:
     VkCommandBuffer commandBuffer; 
 
     struct QueueFamilyIndices {
+        //std:optional used to be cuse that at least one Family exists
         std::optional<uint32_t> graphicsFamily;
         std::optional<uint32_t> presentFamily;
 
@@ -87,6 +88,7 @@ private:
     }
     
     void createSurface() {
+        // Create the presentation surface
         if (glfwCreateWindowSurface(instance, window, nullptr, &surface) != VK_SUCCESS) {
             throw std::runtime_error("failed to create window surface!");
         }
@@ -95,6 +97,7 @@ private:
     QueueFamilyIndices findQueueFamilies(VkPhysicalDevice device) {
         QueueFamilyIndices indices;
 
+        // Queues are grouped into families, each one supporting different type of operations they can execute
         // Retrieve the number of queue families
         uint32_t queueFamilyCount = 0;
         vkGetPhysicalDeviceQueueFamilyProperties(device, &queueFamilyCount, nullptr);
@@ -173,6 +176,7 @@ private:
             // It describes the number of queues we want for a single queue
             VkDeviceQueueCreateInfo queueCreateInfo{};
             queueCreateInfo.sType = VK_STRUCTURE_TYPE_DEVICE_QUEUE_CREATE_INFO;
+            // For each queue set the family index and the count
             queueCreateInfo.queueFamilyIndex = queueFamily;
             queueCreateInfo.queueCount = 1;
             queueCreateInfo.pQueuePriorities = &queuePriority;
@@ -200,6 +204,7 @@ private:
         vkGetDeviceQueue(device, indices.presentFamily.value(), 0, &presentQueue);
     }
 
+    // Group of Command Buffers
     void createCommandPool() {
         QueueFamilyIndices queueFamilyIndices = findQueueFamilies(physicalDevice);
 
@@ -213,6 +218,8 @@ private:
         }
     }
 
+    // Each queue may handle several command buffers, to allow different threads running
+    // on separate cores recording commands in parallel
     void createCommandBuffer() {
         // Struct to specify command pool and number of buffers to allocate
         VkCommandBufferAllocateInfo allocInfo{};
