@@ -317,11 +317,16 @@ private:
         createInfo.sType = VK_STRUCTURE_TYPE_SWAPCHAIN_CREATE_INFO_KHR;
         createInfo.surface = surface;
         // Swap chain images details
+        // Number of images in the buffers
         createInfo.minImageCount = imageCount;
+        // Format of images in the buffers
         createInfo.imageFormat = surfaceFormat.format;
+        // The color space
         createInfo.imageColorSpace = surfaceFormat.colorSpace;
         createInfo.imageExtent = extent;
+        // Number of layers used
         createInfo.imageArrayLayers = 1;
+        // Swap chain images will be used for rendering
         createInfo.imageUsage = VK_IMAGE_USAGE_COLOR_ATTACHMENT_BIT;
         // Get queue families
         QueueFamilyIndices indices = findQueueFamilies(physicalDevice);
@@ -335,11 +340,16 @@ private:
         else {
             createInfo.imageSharingMode = VK_SHARING_MODE_EXCLUSIVE;
         }
-        createInfo.preTransform = swapChainSupport.capabilities.currentTransform; // Dont apply any transform
-        createInfo.compositeAlpha = VK_COMPOSITE_ALPHA_OPAQUE_BIT_KHR; // Ignore alpha channel
+        // Dont apply any transform
+        createInfo.preTransform = swapChainSupport.capabilities.currentTransform; 
+        // What should be done with the alpha channel
+        // Ignore alpha channel
+        createInfo.compositeAlpha = VK_COMPOSITE_ALPHA_OPAQUE_BIT_KHR; 
         createInfo.presentMode = presentMode;
-        createInfo.clipped = VK_TRUE; // Do not care about color of obscured pixels
-        createInfo.oldSwapchain = VK_NULL_HANDLE; // Possible reference to old swap chain
+        // Do not care about color of obscured pixels
+        createInfo.clipped = VK_TRUE; 
+        // Possible reference to old swap chain
+        createInfo.oldSwapchain = VK_NULL_HANDLE; 
         // Create swap chain
         if (vkCreateSwapchainKHR(device, &createInfo, nullptr, &swapChain) != VK_SUCCESS) {
             throw std::runtime_error("failed to create swap chain!");
@@ -357,15 +367,22 @@ private:
 
         SwapChainSupportDetails details;
         // Get surface capabilities for physical device
+        // Is include the size of the framebuffer, and the
+        // minimumand maximum number of buffers supported
         vkGetPhysicalDeviceSurfaceCapabilitiesKHR(device, surface, &details.capabilities);
+        
         // Get supported surface formats
+        // Even if colors are encoded using the RGB system, several
+        // alternative formats, with different color spacesand resolution exist.
         uint32_t formatCount;
         vkGetPhysicalDeviceSurfaceFormatsKHR(device, surface, &formatCount, nullptr);
         if (formatCount != 0) {
             details.formats.resize(formatCount);
             vkGetPhysicalDeviceSurfaceFormatsKHR(device, surface, &formatCount, details.formats.data());
         }
-        // Get supported presentation modes
+
+        // Get supported presentation modes 
+        // They are synchronization the algorithms in Vulkan terminology
         uint32_t presentModeCount;
         vkGetPhysicalDeviceSurfacePresentModesKHR(device, surface, &presentModeCount, nullptr);
         if (presentModeCount != 0) {
@@ -433,6 +450,7 @@ private:
             VkImageViewCreateInfo createInfo{};
             createInfo.sType = VK_STRUCTURE_TYPE_IMAGE_VIEW_CREATE_INFO;
 
+            // Corresponding image itself - most important info
             createInfo.image = swapChainImages[i];
 
             // How to interpret image data
