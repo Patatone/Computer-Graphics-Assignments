@@ -1,8 +1,8 @@
 float n = 0.1; //Near plane distance
 float f = 9.9; //Far plane distance
 
-// Create a matrix for Perspecrtive projection with the given aspect ratio a,
-// and a FovY = 90o
+// -> Create a matrix for Perspecrtive projection with the given aspect ratio a,
+// -> and a FovY = 90o
 glm::mat4 PO1(float a) {
 	glm::mat4 Mlglm = glm::perspective(glm::radians(90.f), a, n, f);
 	// Change the axis convention from OpenGL to Vulkan
@@ -11,8 +11,8 @@ glm::mat4 PO1(float a) {
 }
 
 
-// Create a matrix for Perspecrtive projection with the given aspect ratio a,
-// and a FovY = 120o
+// -> Create a matrix for Perspecrtive projection with the given aspect ratio a,
+// -> and a FovY = 120o
 glm::mat4 PO2(float a) {
 	glm::mat4 Mlglm = glm::perspective(glm::radians(120.f), a, n, f);
 	// Change the axis convention from OpenGL to Vulkan
@@ -20,8 +20,8 @@ glm::mat4 PO2(float a) {
 	return Mlglm;
 }
 
-// Create a matrix for Perspecrtive projection with the given aspect ratio a,
-// and a FovY = 30o
+// -> Create a matrix for Perspecrtive projection with the given aspect ratio a,
+// -> and a FovY = 30o
 glm::mat4 PO3(float a) {
 	glm::mat4 Mlglm = glm::perspective(glm::radians(30.f), a, n, f);
 	// Change the axis convention from OpenGL to Vulkan
@@ -29,10 +29,10 @@ glm::mat4 PO3(float a) {
 	return Mlglm;
 }
 
-// Create a matrix for Perspecrtive projection, with the given aspect ratio a.
-// Here the perspective should only show the left side of the view
-// with a FovY = 90o. Here r=0, and l, t and b should be computed
-// to match both the aspect ratio and the FovY
+// -> Create a matrix for Perspecrtive projection, with the given aspect ratio a.
+// -> Here the perspective should only show the left side of the view
+// -> with a FovY = 90o. Here r=0, and l, t and b should be computed
+// -> to match both the aspect ratio and the FovY
 glm::mat4 PO4(float a) {
 	float tan_v = tan(glm::radians(90.f) / 2);
 

@@ -1,5 +1,7 @@
 #define GLFW_INCLUDE_VULKAN
 #include <GLFW/glfw3.h>
+#define _USE_MATH_DEFINES
+#include <cmath>
 
 #include <iostream>
 #include <stdexcept>
