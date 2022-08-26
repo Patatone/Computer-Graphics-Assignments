@@ -11,7 +11,7 @@ layout(set = 0, binding = 0) uniform UniformBufferObject {
 layout(location = 0) in vec3 inPosition;
 
 void main() {
-	// gl_Positionis a vec4 variable that must be filled with the 
-	// clipping coordinates of the vertex
+	// gl_Positionis is a vec4 variable that must be filled with the 
+	// clipping coordinates of the vertex. Definition in the L08 slide.
 	gl_Position = ubo.prjMat * ubo.viewMat * ubo.worldMat * vec4(inPosition, 1.0);
 }
