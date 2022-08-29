@@ -7,7 +7,7 @@ layout(set = 0, binding = 0) uniform UniformBufferObject {
 	mat4 prjMat;
 } ubo;
 
-// Position - the cartesian local coordinates of each vertex in variable
+// Receive the Position (the cartesian local coordinates of each vertex in variable) from slot 0.
 layout(location = 0) in vec3 inPosition;
 
 void main() {

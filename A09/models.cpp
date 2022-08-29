@@ -2,7 +2,6 @@
 // in global variables M1_vertices and M1_indices to M4_vertices and M4_indices
 void makeModels() {
 	//// M1 : Cube
-	// Replace the code below, that creates a simple square, with the one to create a cube.
 
 	// Resizes the vertices array. Repalce the values with the correct number of
 	// vertices components (3 * number of vertices)
@@ -62,7 +61,6 @@ void makeModels() {
 
 
 	//// M2 : Cylinder
-	// Replace the code below, that creates a simple rotated square, with the one to create a cylinder.
 
 	int NSlices = 36;
 	float radius = 1;
@@ -80,7 +78,7 @@ void makeModels() {
 	M2_vertices[0] = center_x;
 	M2_vertices[1] = center_y + height;
 	M2_vertices[2] = center_z;
-	// Upper circle
+	// --- Upper circle ---
 	for (int i = 0; i < NSlices; i++) {
 		//x for the vertex
 		M2_vertices[(i + 1) * 3 + 0] = center_x + radius * cos((float)i / NSlices * 2.0 * M_PI);
@@ -94,7 +92,7 @@ void makeModels() {
 	M2_vertices[(NSlices + 1) * 3 + 0] = center_x;
 	M2_vertices[(NSlices + 1) * 3 + 1] = center_y - height;
 	M2_vertices[(NSlices + 1) * 3 + 2] = center_z;
-	// Lower circle
+	// --- Lower circle---
 	for (int i = (NSlices + 1); i < 2 * NSlices + 1; i++) {
 		//x for the vertex
 		M2_vertices[(i + 1) * 3 + 0] = center_x + radius * cos((float)(i - NSlices - 1) / NSlices * 2.0 * M_PI);
@@ -225,7 +223,6 @@ void makeModels() {
 
 
 	//// M4 : Spring
-	// Replace the code below, that creates a simple octahedron, with the one to create a spring.
 
 	// How much smooth the "faces" of the cylinders that compose the spring
 	int nSSlices = 12;
@@ -249,7 +246,7 @@ void makeModels() {
 	// Vertices definitions
 	for (int i = 0; i < steps; i++) {
 		t = (float)i / steps * n * 2.0 * M_PI;
-		// Center of i circle 
+		// Center of circle "i"
 		sCx = R * cos(t);
 		sCy = (d * t) / M_PI;
 		sCz = R * sin(t);

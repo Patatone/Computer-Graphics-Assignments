@@ -1,0 +1,44 @@
+Shaders = are the pipeline components that compute the positions and the colors of the pixels on screen
+corresponding to points of the objects
+
+Uniform variables Blocks = Needed to pass elements (scene and mesh for example) to the shaders
+
+Sets 	-> Group of Uniform variables, each one rappresents one level of frequency at which values are updated. Smaller id, changes less often.
+Binding -> It Identifies the resource inside the Set
+
+---------------------------------------------
+
+Vertex shaders = It performs operations on each vertex.
+
+Fragment shader = It determines the final color of each fragment.
+It cannot directly access the attributes associated with a vertex.
+
+---------------------------------------------
+
+Command Buffers = It stores Vulkan operations. Each queue may handle several command buffers, to allow different threads running
+on separate cores recording commands in parallel.
+
+Command Pools = groups of Command Buffers
+
+---------------------------------------------
+
+Swap chain = It is essentially a queue of images that are waiting to be presented to the screen.
+It's needed to handle Screen Synchronization.
+
+Image Views = It describes how to access the image and which part of the image to access
+
+---------------------------------------------
+
+Descriptor Layouts = They rappresents the "class" of the uniform variables, they specify:
+- The type of descriptor
+- The binding ID
+- The stage in which this will be used
+
+Pipeline Layout = It selects which of the available Descriptor Layouts will be accessed in that specific pipeline.
+It specify the Set ID of the Descriptor
+
+Descriptor Sets = They are the Instances of the uniform data, they define the values that will be passed to the uniforms.
+We need at least a Descriptor Set for each different value assigned to a Uniform.
+
+Descriptor Pools = groups of Descriptor Sets. Similar at what we have seen for Command Pools
+
