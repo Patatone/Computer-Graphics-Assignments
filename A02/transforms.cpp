@@ -52,7 +52,7 @@ const float MT6[] = {
 		   0.0,		0.0,		0.0,		1.0 };
 
 // -> Make a shear along the Y axis, with a factor of 1 along the x axis
-// The shear transform bends an object in one direction
+// The shear bends an object in one direction
 // We edit the first and the third element of the second column with the x and z factor
 const float MT7[] = {
 		   1.0,		1.0,		0.0,		0.0,

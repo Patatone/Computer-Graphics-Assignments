@@ -447,7 +447,8 @@ private:
 	}
 
 	/* A14: Create image views */
-	// It describes how to access the image and which part of the image to access
+
+	// The Image View  describes how to access the image and which part of the image to access
 	void createImageViews() {
 		// Resize the list to fit all of the image views we will create
 		swapChainImageViews.resize(swapChainImages.size());
